@@ -2,9 +2,13 @@ import { InputText } from 'primereact/inputtext';
 import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { Button } from 'primereact/button';
+import { useState } from 'react';
         
 
 const Login = () => {
+
+    const [mostrarSenha, setMostrarSenha] = useState(false);
+
     return ( 
         <>
            <div className='bg-primary-500 h-screen flex align-items-center justify-content-center px-3'>
@@ -22,9 +26,12 @@ const Login = () => {
                     <div className='mb-3'>
                     <IconField>
                         <InputIcon 
-                            className="pi pi-eye"> </InputIcon>
+                            className={`pi ${mostrarSenha ? "pi-eye-slash": "pi-eye"} cursor-pointer`}
+                            onClick={() => setMostrarSenha(!mostrarSenha)}
+                        > </InputIcon>
                         <InputText 
-                            id='senha'  
+                            id='senha' 
+                            type={ mostrarSenha ? 'text': 'password'} 
                             placeholder='********'
                             className='w-full'/>
                     </IconField>
